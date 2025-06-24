@@ -36,13 +36,26 @@ Then create a Python virtual environment:
 cd piper/src/python
 python3 -m venv .venv
 source .venv/bin/activate
-pip3 install --upgrade pip
-pip3 install --upgrade wheel setuptools
-pip3 install -e .
+pip install --upgrade pip
+pip install --upgrade wheel setuptools
+pip install cython
+sudo apt install espeak-ng libespeak-ng-dev
+pip install piper-tts onnx
+pip install librosa numpy onnxruntime pytorch-lightning torch 
+# pip install git+https://github.com/rhasspy/piper-phonemize.git
 ```
 
 Run the `build_monotonic_align.sh` script in the `src/python` directory to build the extension.
 
+``` sh
+sudo apt-get install python3.10-dev
+sudo chmod +x build_monotonic_align.sh
+./build_monotonic_align.sh
+```
+
+``` sh
+python3 -m piper_train.export_onnx_streaming ljspeech-2000.ckpt output/
+```
 Ensure you have [espeak-ng](https://github.com/espeak-ng/espeak-ng/) installed (`sudo apt-get install espeak-ng`).
 
 
